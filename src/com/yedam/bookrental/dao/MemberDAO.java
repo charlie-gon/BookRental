@@ -47,13 +47,13 @@ public class MemberDAO extends DAO {
 			public int memberInsert(MemberVO vo) {
 				int n = 0;
 				
-				String sql = "insert into member values(?,?,?,?,?)";
+				String sql = "INSERT INTO MEMBER(MEMBERID, MEMBERNAME, MEMBERPASSWORD, MEMBERTEL, MEMBERADDRESS) VALUES(?,?,?,?,?)";
 				
 				try {
 					psmt = conn.prepareStatement(sql);
 					psmt.setString(1, vo.getmId());
 					psmt.setString(2, vo.getmName());
-					psmt.setString(3, vo.getmAddress());
+					psmt.setString(3, vo.getmPassword());
 					psmt.setString(4, vo.getmTel());
 					psmt.setString(5, vo.getmAddress());
 					
@@ -135,6 +135,35 @@ public class MemberDAO extends DAO {
 			      }
 			      return vo;
 			   }
+			
+			// 회원 확인 메소드
+			public int checkMember(String id, String pwd) {
+				String checkPwd = "";
+				int x = -1;
+				String sql = "SELECT MEMBERPASSWORD FROM MEMBER WHERE MEMBERID = ?";
+				
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, id);
+					rs = psmt.executeQuery();
+					if(rs.next()) { // 입력된 아이디에 해당하는 비밀번호 있을 경우
+						checkPwd = rs.getString("memberpassword");
+						
+						if(checkPwd.equals(pwd)) // 넘겨받은 비밀번호와 꺼내온 비밀번호 비교
+							x = 1; 
+						else
+							x = 0;
+					}else {
+						x = -1; // 해당 아이디가 없음.
+					}
+					
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close();
+				}
+				return x;
+			}
 			
 			// close 메소드
 			private void close() {

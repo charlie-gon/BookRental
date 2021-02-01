@@ -26,6 +26,29 @@
         }
     </style>
 
+<script>
+	function checkValue(){
+		if(!document.frm.id.value){
+			alert("아이디를 입력하세요.");
+			return false;
+		}
+		if(!document.frm.password.value){
+			alert("비밀번호를 입력하세요.");
+			return false;
+		}
+		if(document.frm.password.value != document.frm.passwordc.value){
+			alert("비밀번호를 동일하게 입력하세요.");
+			return false;
+		}
+		
+	}
+	
+	function goMain(){
+		location.href = "main.do";
+	}
+	
+</script>
+
 </head>
 <body>
 <jsp:include page="../common/menu.jsp" />
@@ -34,7 +57,7 @@
 		<br> <b><font size="6">회원가입</font></b> <br>
 		<br>
 
-		<form align="left" action="" method="post">
+		<form align="left" id="frm" name="frm" action="memberJoinSuccess.do" onsubmit="checkValue()" method="post">
 			<table>
 				<tr>
 					<td id="title">아이디</td>
@@ -49,7 +72,7 @@
 
 				<tr>
 					<td id="title">비밀번호 확인</td>
-					<td><input type="password" name="password" maxlength="15">
+					<td><input type="password" name="passwordc" maxlength="15">
 					</td>
 				</tr>
 
@@ -70,7 +93,7 @@
 			<br> 
 			<div align="center">
 			<input type="submit" value="가입" /> 
-			<input type="button" value="취소" />
+			<input type="button" onclick="goMain()" value="취소" />
 			</div>
 		</form>
 	</div>

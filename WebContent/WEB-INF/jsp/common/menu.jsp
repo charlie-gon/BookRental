@@ -5,67 +5,89 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Menu Page</title>
 <style>
-#topMenu {
-	height: 30px;
-	width: 1300px;
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
-#topMenu ul li {
-	list-style: none;
-	color: white;
-	background-color: #2d2d2d;
-	float: left;
-	line-height: 30px;
-	vertical-align: middle;
-	text-align: center;
+li {
+  float: left;
 }
 
-#topMenu .menuLink {
-	text-decoration: none;
-	color: white;
-	display: block;
-	width: 145px;
-	font-size: 12px;
-	font-weight: bold;
-	font-family: "Trebuchet MS";
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-#topMenu .menuLink:hover {
-	color: red;
-	background-color: #4d4d4d;
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
 }
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>
 </head>
 <body>
 	<div align="center">
-		<nav id="topMenu">
-			<ul>
-				<li><a class="menuLink" href="main.do">Home</a></li>
-				<li>|</li>
-				
-				<li><a class="menuLink" href="bookList.do">조회</a></li>
-				<li>|</li>
-
-				<li><a class="menuLink" href="bookRental.do">대여</a></li>
-				<li>|</li>
-			
-				<li><a class="menuLink" href="bookReturn.do">반납</a></li>
-				<li>|</li>
-				<li><a class="menuLink" href="#">관리</a></li>
-				<li>|</li>
-					
-				<c:if test="${empty vo.mId}">
-				<li><a class="menuLink" href="memberJoin.do">회원가입</a></li>
-				<li>|</li>
-				<li><a class="menuLink" href="loginForm.do">Login</a></li>
-				</c:if>
-				
-				<li>|</li>
-				<li><a class="menuLink" href="logOut.do">Logout</a></li>
-			</ul>
-		</nav>
+		<h1>도서 대여 관리</h1>
 	</div>
+	<ul>
+		<li><a href="main.do">Home</a></li>
+		<li class="dropdown">
+		<a href="javascript:void(0)" class="dropbtn">마이 라이브러리</a>
+			<div class="dropdown-content">
+				<a href="bookList.do">조회</a> 
+				<a href="bookRental.do">대여</a> 
+				<a href="bookReturn.do">반납</a>
+			</div>
+		</li>
+		<li class="dropdown">
+		<a href="javascript:void(0)" class="dropbtn">관리자</a>
+			<div class="dropdown-content">
+				<a href="#">C</a> 
+				<a href="#">R</a> 
+				<a href="#">U</a>
+				<a href="#">D</a>
+			</div>
+		</li>
+		<li><a href="memberJoin.do">회원가입</a></li>
+		<li><a href="loginForm.do">Login</a></li>
+		<li><a href="logOut.do">Logout</a></li>
+	</ul>
+
 </body>
 </html>
