@@ -31,6 +31,7 @@
 			</table>
 			<p />
 			<div block="inline-block">
+				<button type="button" onclick="location.href='bookRental.do'">대여 목록</button>
 				<button type="button" onclick="location.href='main.do'">HOME</button>
 			</div>
 

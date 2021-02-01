@@ -16,6 +16,9 @@ import com.yedam.bookrental.web.BookRental;
 import com.yedam.bookrental.web.BookRentalUpdate;
 import com.yedam.bookrental.web.BookReturn;
 import com.yedam.bookrental.web.BookReturnUpdate;
+import com.yedam.bookrental.web.LogOut;
+import com.yedam.bookrental.web.Login;
+import com.yedam.bookrental.web.LoginForm;
 import com.yedam.bookrental.web.MainCommand;
 import com.yedam.bookrental.web.MemberJoin;
 
@@ -48,6 +51,10 @@ public class FrontController extends HttpServlet {
 		map.put("/bookReturn.do", new BookReturn()); // 도서 반납
 		map.put("/bookReturnUpdate.do", new BookReturnUpdate()); // 도서 반납 확인
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입
+		map.put("/loginForm.do", new LoginForm());// 로그인
+		map.put("/login.do", new Login());// Login정보 송출
+		map.put("/logOut.do", new LogOut()); // 로그아웃
+	
 	}
 
 	/**

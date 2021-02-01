@@ -17,7 +17,7 @@ public class BookRentalUpdate implements Command {
 		BookVO vo = new BookVO();
 		
 		vo.setbCode(request.getParameter("bCode"));
-		vo = dao.bookSelect(vo);
+		vo = dao.bookRental(vo);
 		request.setAttribute("vo", vo);
 		
 		return "book/bookRentalUpdate";

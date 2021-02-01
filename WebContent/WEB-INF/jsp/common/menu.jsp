@@ -44,27 +44,26 @@
 			<ul>
 				<li><a class="menuLink" href="main.do">Home</a></li>
 				<li>|</li>
-
+				
 				<li><a class="menuLink" href="bookList.do">조회</a></li>
 				<li>|</li>
 
 				<li><a class="menuLink" href="bookRental.do">대여</a></li>
 				<li>|</li>
-				
+			
 				<li><a class="menuLink" href="bookReturn.do">반납</a></li>
 				<li>|</li>
-
 				<li><a class="menuLink" href="#">관리</a></li>
 				<li>|</li>
-				
+					
+				<c:if test="${empty vo.mId}">
 				<li><a class="menuLink" href="memberJoin.do">회원가입</a></li>
 				<li>|</li>
+				<li><a class="menuLink" href="loginForm.do">Login</a></li>
+				</c:if>
 				
-				<li><a class="menuLink" href="#">Login</a></li>
-
 				<li>|</li>
-				<li><a class="menuLink" href="#">Logout</a></li>
-
+				<li><a class="menuLink" href="logOut.do">Logout</a></li>
 			</ul>
 		</nav>
 	</div>

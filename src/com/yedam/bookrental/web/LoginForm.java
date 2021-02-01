@@ -5,15 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.bookrental.common.Command;
 
-public class MemberJoin implements Command {
+public class LoginForm implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		// 회원가입 Form 전달
-		
-		
-		
-		return "book/memberJoin";
+		// TODO Auto-generated method stub
+		return "book/loginForm";
 	}
 
 }

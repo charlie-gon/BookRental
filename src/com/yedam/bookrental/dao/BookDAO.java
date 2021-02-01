@@ -110,7 +110,8 @@ public class BookDAO extends DAO {
 			return n;
 		}
 	
-	public BookVO bookSelect(BookVO vo) {
+	// 도서 대여
+	public BookVO bookRental(BookVO vo) {
 		
 		String sql = "SELECT * FROM BOOK WHERE BOOKCODE = ?";
 		
@@ -123,6 +124,7 @@ public class BookDAO extends DAO {
 				vo.setbName(rs.getString("bookname"));
 				vo.setbQty(rs.getInt("quantity"));
 				vo.setbCount(rs.getInt("bcount"));
+				countMinus(Integer.parseInt(vo.getbCode()));
 			}
 			
 		}catch(SQLException e) {
@@ -134,9 +136,59 @@ public class BookDAO extends DAO {
 		return vo;
 	}
 	
+	// 도서 반납
+		public BookVO bookReturn(BookVO vo) {
+			
+			String sql = "SELECT * FROM BOOK WHERE BOOKCODE = ?";
+			
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, vo.getbCode());
+				rs = psmt.executeQuery();
+				if(rs.next()) {
+					vo.setbCode(rs.getString("bookcode"));
+					vo.setbName(rs.getString("bookname"));
+					vo.setbQty(rs.getInt("quantity"));
+					vo.setbCount(rs.getInt("bcount"));
+					countPlus(Integer.parseInt(vo.getbCode()));
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			
+			return vo;
+		}
 	
+	// 현재수량 더하기
+	public void countPlus(int count) {
 		
+		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT + 1 WHERE BOOKCODE = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, count);
+			psmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	// 현재수량 빼기
+	public void countMinus(int count) {
+		
+		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT - 1 WHERE BOOKCODE = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, count);
+			psmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 		
 	// close 메소드
 	private void close() {

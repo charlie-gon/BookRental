@@ -30,6 +30,7 @@
 			</table>
 			<p />
 			<div block="inline-block">
+				<button type="button" onclick="location.href='bookReturn.do'">반납 목록</button>
 				<button type="button" onclick="location.href='main.do'">HOME</button>
 			</div>
 

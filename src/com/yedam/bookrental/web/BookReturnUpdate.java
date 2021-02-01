@@ -17,7 +17,7 @@ public class BookReturnUpdate implements Command {
 		BookVO vo = new BookVO();
 		
 		vo.setbCode(request.getParameter("bCode"));
-		vo = dao.bookSelect(vo);
+		vo = dao.bookReturn(vo);
 		request.setAttribute("vo", vo);
 		
 		return "book/bookReturnUpdate";

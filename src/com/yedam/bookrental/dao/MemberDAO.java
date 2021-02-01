@@ -114,6 +114,28 @@ public class MemberDAO extends DAO {
 					return n;
 				}
 			
+			public MemberVO select(MemberVO vo) {
+			      String sql = "SELECT * FROM MEMBER WHERE MEMBERID =?";
+			      try {
+			         psmt = conn.prepareStatement(sql);
+			         psmt.setString(1, vo.getmId());
+			         rs = psmt.executeQuery();
+			         if (rs.next()) {
+			            vo.setmId(rs.getString("memberid"));
+			            vo.setmName(rs.getString("membername"));
+			            vo.setmPassword(rs.getString("memberpassword"));
+			            vo.setmTel(rs.getString("membertel"));
+			            vo.setmAddress(rs.getString("memberaddress"));
+			            vo.setmAuth(rs.getString("memberauth"));
+			         }
+			      } catch (SQLException e) {
+
+			      } finally {
+			         close();
+			      }
+			      return vo;
+			   }
+			
 			// close 메소드
 			private void close() {
 				try {
