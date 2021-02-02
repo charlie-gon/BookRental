@@ -30,6 +30,7 @@ import com.yedam.bookrental.web.LoginForm;
 import com.yedam.bookrental.web.MainCommand;
 import com.yedam.bookrental.web.MemberJoin;
 import com.yedam.bookrental.web.MemberJoinSuccess;
+import com.yedam.bookrental.web.idCheck;
 import com.yedam.bookrental.web.joinSuccess;
 
 
@@ -66,6 +67,7 @@ public class FrontController extends HttpServlet {
 		map.put("/logOut.do", new LogOut()); // 로그아웃
 		map.put("/memberJoinSuccess.do", new MemberJoinSuccess()); // 회원가입 확인
 		map.put("/joinSuccess.do", new joinSuccess()); // 회원가입 성공
+		map.put("/idCheck.do", new idCheck());
 		
 		map.put("/adminList.do", new AdminList());// 관리자-전체리스트
 		map.put("/adminView.do", new AdminView());// 관리자-상세보기

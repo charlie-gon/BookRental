@@ -22,8 +22,6 @@
 		}
 		f.submit();
 	}
-	
-
 	function goJoin(){
 		location.href = "location.href='memberJoin.do";
 	}

@@ -160,8 +160,35 @@ public class MemberDAO extends DAO {
 					close();
 				}
 				return vo;
-			
 			}
+			
+			// 아이디 체크
+			public boolean isIdCheck(String id) {
+				boolean bool = true;
+				String sql = "SELECT MEMBERID FROM MEMBER WHERE MEMBERID = ?";
+				
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, id);
+					rs = psmt.executeQuery();
+					if(rs.next()) {
+						bool = false;
+					}
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close();
+				}
+				return bool;
+			}
+			
+			// 아이디별 대여 도서 확인
+//			select b.bookcode, b.bookname, m.memberid, m.membername, r.rentaldate, r.returndate
+//			from book b JOIN rental r
+//			ON(b.bookcode = r.bookcode)
+//			JOIN member m
+//			ON(m.memberid = r.memberid)
+//			where m.memberid = '1';
 			
 			// close 메소드
 			private void close() {

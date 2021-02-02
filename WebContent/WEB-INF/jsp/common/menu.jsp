@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu Page</title>
+
 <style>
 
 ul {
@@ -59,6 +60,17 @@ li.dropdown {
   display: block;
 }
 
+/* 로그인 멤버 알림 글자 깜박임 */
+.blink {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -99,6 +111,13 @@ li.dropdown {
 		<li><a href="logOut.do">Logout</a></li>
 		</c:if>
 	</ul>
-
+	
+	<!-- 로그인 멤버 알림 -->
+	<c:if test="${not empty mname }">
+	<div align="right">
+		<h4 class="blink" style="padding-right: 20px">${mname }님 접속을 환영합니다.</h4>
+	</div>
+	</c:if>
+	
 </body>
 </html>
