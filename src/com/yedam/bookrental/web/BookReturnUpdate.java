@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.bookrental.common.Command;
-import com.yedam.bookrental.dao.BookDAO;
-import com.yedam.bookrental.vo.BookVO;
+import com.yedam.bookrental.dao.BookRentalDAO;
+import com.yedam.bookrental.vo.BookRentalVO;
 
 public class BookReturnUpdate implements Command {
 
@@ -13,8 +13,8 @@ public class BookReturnUpdate implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// 도서 반납 확인
 		
-		BookDAO dao = new BookDAO();
-		BookVO vo = new BookVO();
+		BookRentalDAO dao = new BookRentalDAO();
+		BookRentalVO vo = new BookRentalVO();
 		
 		vo.setbCode(request.getParameter("bCode"));
 		vo = dao.bookReturn(vo);
