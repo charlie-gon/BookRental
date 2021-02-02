@@ -139,11 +139,11 @@ public class MemberDAO extends DAO {
 			// 로그인 확인
 			public MemberVO checkMember(MemberVO vo) {
 				
-				String sql = "SELECT * FROM MEMBER WHERE MEMBERNAME = ? AND MEMBERPASSWORD = ?";
+				String sql = "SELECT * FROM MEMBER WHERE MEMBERID = ? AND MEMBERPASSWORD = ?";
 				
 				try {
 					psmt = conn.prepareStatement(sql);
-					psmt.setString(1, vo.getmName());
+					psmt.setString(1, vo.getmId());
 					psmt.setString(2, vo.getmPassword());
 					rs = psmt.executeQuery();
 					if(rs.next()) {

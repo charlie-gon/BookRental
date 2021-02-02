@@ -18,21 +18,22 @@ public class Login implements Command {
 	   MemberDAO dao = new MemberDAO();
 	   MemberVO vo = new MemberVO();
 	   
-	   vo.setmName(request.getParameter("mName"));
+	   vo.setmId(request.getParameter("mId"));
 	   vo.setmPassword(request.getParameter("mPassword"));
 	   vo = dao.checkMember(vo);
 	   
 	   String viewPage = null;
 	   
-	   if(vo.getmAuth() != null) {
 		   HttpSession session = request.getSession();
 		   session.setAttribute("mname", vo.getmName());
 		   session.setAttribute("mauth", vo.getmAuth());
-		   viewPage = "book/loginSuccess";
-	   }else {
-		   viewPage = "book/loginFail";
-	   }
-	   request.setAttribute("vo", vo);
+		   
+			if (vo.getmAuth() != null) {
+				viewPage = "book/loginSuccess";
+			} else {
+				viewPage = "book/loginFail";
+			}
+			request.setAttribute("vo", vo);
 	   
 	   return viewPage;
 

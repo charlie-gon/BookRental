@@ -12,8 +12,6 @@
 <div align="center">
 	<h1>${mname }님 환영합니다.</h1><br/>
 	<h2>권한: ${mauth }</h2>
-	
-
 </div>
 
 </body>

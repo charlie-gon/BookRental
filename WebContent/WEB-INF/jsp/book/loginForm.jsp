@@ -9,9 +9,9 @@
 <script>
 	function checkValue(){
 		var f = document.frm;
-		if(!f.mName.value){
+		if(!f.mId.value){
 			alert("아이디를 입력하세요.");
-			f.mName.focus();
+			f.mId.focus();
 			return false;
 		}
 		
@@ -38,7 +38,7 @@
             <table border="1">
                <tr>
                   <th>아이디</th>
-                  <td><input type="text" id="mName" name="mName"></td>
+                  <td><input type="text" id="mId" name="mId"></td>
                </tr>
                <tr>
                   <th>패스워드</th>
