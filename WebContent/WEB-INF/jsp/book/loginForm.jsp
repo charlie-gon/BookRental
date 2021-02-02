@@ -7,18 +7,25 @@
 <title>Insert title here</title>
 
 <script>
-	function login(){
+	function checkValue(){
 		var f = document.frm;
-		if(!f.mId.value){
+		if(!f.mName.value){
 			alert("아이디를 입력하세요.");
-			f.mId.focus();
-			return;
+			f.mName.focus();
+			return false;
 		}
+		
 		if(!f.mPassword.value){
 			alert("비밀번호를 입력하세요.");
 			f.mPassword.focus();
-			return;
+			return false;
 		}
+		f.submit();
+	}
+	
+
+	function goJoin(){
+		location.href = "location.href='memberJoin.do";
 	}
 </script>
 </head>
@@ -31,7 +38,7 @@
             <table border="1">
                <tr>
                   <th>아이디</th>
-                  <td><input type="text" id="mId" name="mId"></td>
+                  <td><input type="text" id="mName" name="mName"></td>
                </tr>
                <tr>
                   <th>패스워드</th>
@@ -39,25 +46,12 @@
                </tr>
             </table><br>
             <div>
-            <button type="submit" onclick="login()">로그인</button>&nbsp;&nbsp;
-            <button type="reset" onclick="memberJoin.do">회원가입</button>
+            <input type="button" onclick = "checkValue()" value="로그인">&nbsp;&nbsp;
+            <input type="reset" onclick="goJoin()" value="회원가입">
             </div>
          </div>
       </form>
       
-      <% 
-      	String msg = request.getParameter("msg");
-      if(msg != null && msg.equals("0")){
-    	  out.println("<br>");
-    	  out.println("<font color='red' size='5'>비밀번호를 확인해 주세요.</font>");
-      }
-      else if(msg!=null && msg.equals("-1"))
-      {    
-          out.println("<br>");
-          out.println("<font color='red' size='5'>아이디를 확인해 주세요.</font>");
-      }
-
-      %>
    </div>
 </body>
 </html>

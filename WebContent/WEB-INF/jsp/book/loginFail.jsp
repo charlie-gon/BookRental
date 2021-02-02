@@ -10,7 +10,11 @@
 <jsp:include page="../common/menu.jsp" />
 
 <div align="center">
-	<h2><%= session.getAttribute("message") %></h2>
+	<h1>${vo.mName }님 아이디 또는 비밀번호가 틀렸습니다.</h1><br/>
+	<button type="button" onclick="location.href='loginForm.do'">로그인</button>
+
 </div>
+
+
 </body>
 </html>

@@ -13,26 +13,28 @@ public class Login implements Command {
    @Override
    public String execute(HttpServletRequest request, HttpServletResponse response) {
 	   
-	   String id = request.getParameter("mId");
-	   String pwd = request.getParameter("mPassword");
+	   // 로그인 멤버 validation 처리
 	   
 	   MemberDAO dao = new MemberDAO();
-	   int check = dao.checkMember(id, pwd);
+	   MemberVO vo = new MemberVO();
 	   
-	   HttpSession session = request.getSession();
+	   vo.setmName(request.getParameter("mName"));
+	   vo.setmPassword(request.getParameter("mPassword"));
+	   vo = dao.checkMember(vo);
 	   
-	   String viewPage = "";
-	   if(check == 1) {
-		   session.setAttribute("sessionId", id);
+	   String viewPage = null;
+	   
+	   if(vo.getmAuth() != null) {
+		   HttpSession session = request.getSession();
+		   session.setAttribute("mname", vo.getmName());
+		   session.setAttribute("mauth", vo.getmAuth());
 		   viewPage = "book/loginSuccess";
-	   }
-	   else {
+	   }else {
 		   viewPage = "book/loginFail";
 	   }
+	   request.setAttribute("vo", vo);
 	   
 	   return viewPage;
-   
-	   	
 
 	}
 }

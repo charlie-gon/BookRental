@@ -67,6 +67,7 @@ li.dropdown {
 	</div>
 	<ul>
 		<li><a href="main.do">Home</a></li>
+		<c:if test="${mauth == 'USER' and not empty mname}">
 		<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">마이 라이브러리</a>
 			<div class="dropdown-content">
@@ -75,6 +76,9 @@ li.dropdown {
 				<a href="bookReturn.do">반납</a>
 			</div>
 		</li>
+		</c:if>
+		
+		<c:if test="${mauth == 'ADMIN' and not empty mname}">
 		<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">관리자</a>
 			<div class="dropdown-content">
@@ -84,9 +88,16 @@ li.dropdown {
 				<a href="#">D</a>
 			</div>
 		</li>
+		</c:if>
+		
+		<c:if test="${empty mname }">
 		<li><a href="memberJoin.do">회원가입</a></li>
 		<li><a href="loginForm.do">Login</a></li>
+		</c:if>
+		
+		<c:if test="${not empty mname }">
 		<li><a href="logOut.do">Logout</a></li>
+		</c:if>
 	</ul>
 
 </body>
