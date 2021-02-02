@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.bookrental.web.AdminDelete;
+import com.yedam.bookrental.web.AdminInsert;
+import com.yedam.bookrental.web.AdminInsertForm;
+import com.yedam.bookrental.web.AdminList;
+import com.yedam.bookrental.web.AdminUpdate;
+import com.yedam.bookrental.web.AdminUpdateForm;
+import com.yedam.bookrental.web.AdminView;
 import com.yedam.bookrental.web.BookList;
 import com.yedam.bookrental.web.BookRental;
 import com.yedam.bookrental.web.BookRentalUpdate;
@@ -57,7 +65,15 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new Login());// Login정보 송출
 		map.put("/logOut.do", new LogOut()); // 로그아웃
 		map.put("/memberJoinSuccess.do", new MemberJoinSuccess()); // 회원가입 확인
-		map.put("/joinSuccess.do", new joinSuccess());
+		map.put("/joinSuccess.do", new joinSuccess()); // 회원가입 성공
+		
+		map.put("/adminList.do", new AdminList());// 관리자-전체리스트
+		map.put("/adminView.do", new AdminView());// 관리자-상세보기
+		map.put("/adminDelete.do", new AdminDelete());// 관리자-상세보기-삭제 Child record가 있으면 삭제가 안되도록
+		map.put("/adminInsertForm.do", new AdminInsertForm());// 관리자-등록 폼
+		map.put("/adminInsert.do", new AdminInsert());// 관리자-등록
+		map.put("/adminUpdateForm.do", new AdminUpdateForm());// 관리자-수정 폼
+		map.put("/adminUpdate.do", new AdminUpdate());//관리자-수정
 	
 	}
 

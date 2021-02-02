@@ -82,10 +82,10 @@ li.dropdown {
 		<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">관리자</a>
 			<div class="dropdown-content">
-				<a href="#">C</a> 
-				<a href="#">R</a> 
-				<a href="#">U</a>
-				<a href="#">D</a>
+				<a href="adminInsertForm.do">추가</a> 
+				<a href="adminList.do">관리</a> 
+				<a href="adminUpdateForm.do">수정</a>
+				<a href="adminDelete.do">삭제</a>
 			</div>
 		</li>
 		</c:if>
