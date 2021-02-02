@@ -10,6 +10,9 @@
 
 <style>
 	td{cursor:pointer}	
+	
+	#noticeYes{color:#0100ff}
+	#noticeNo{color: #ff0000}
 </style>
 
 <script>
@@ -40,17 +43,22 @@
 						<th width="100">도서명</th>
 						<th width="100">기본수량</th>
 						<th width="100">현재수량</th>
+						<th width="100">대출여부</th>
 					</tr>
 
 					<c:forEach var="vo" items="${list }">
-						<c:if test="${vo.bCount ne 0 }">
-							<tr align="center" onclick="bookRentalSubmit(${vo.bCode})">
-								<td width="100">${vo.bCode }</td>
-								<td width="100">${vo.bName }</td>
-								<td width="100">${vo.bQty }</td>
-								<td width="100">${vo.bCount }</td>
-							</tr>
-						</c:if>
+						<tr align="center" onclick="bookRentalSubmit(${vo.bCode})">
+							<td width="100">${vo.bCode }</td>
+							<td width="100">${vo.bName }</td>
+							<td width="100">${vo.bQty }</td>
+							<td width="100">${vo.bCount }</td>
+							<c:if test="${vo.bCount != 0  }">
+								<th width="100" id="noticeYes">대출가능</th>
+							</c:if>
+							<c:if test="${vo.bCount == 0  }">
+								<th width="100" id="noticeNo">대출불가능</th>
+							</c:if>
+						</tr>
 					</c:forEach>
 				</table>
 				<p/>

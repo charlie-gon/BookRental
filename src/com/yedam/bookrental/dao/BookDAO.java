@@ -41,7 +41,6 @@ public class BookDAO extends DAO {
 		return list;
 	}
 	
-	
 	// 도서 관리 등록
 	public int bookInsert(BookVO vo) {
 		int n = 0;

@@ -71,7 +71,7 @@ li.dropdown {
 		<li class="dropdown">
 		<a href="javascript:void(0)" class="dropbtn">마이 라이브러리</a>
 			<div class="dropdown-content">
-				<a href="bookList.do">조회</a> 
+				<!-- <a href="bookList.do">조회</a>  -->
 				<a href="bookRental.do">대여</a> 
 				<a href="bookReturn.do">반납</a>
 			</div>

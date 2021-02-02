@@ -2,6 +2,7 @@ package com.yedam.bookrental.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.bookrental.common.Command;
 import com.yedam.bookrental.dao.BookRentalDAO;
@@ -16,15 +17,18 @@ public class BookReturnUpdate implements Command {
 		BookRentalDAO dao = new BookRentalDAO();
 		BookRentalVO vo = new BookRentalVO();
 		
-		vo = dao.select(vo);
 		vo.setbCode(request.getParameter("bCode"));
+		HttpSession session = request.getSession();
+		vo.setmId((String) session.getAttribute("mId"));
 		
-		int n = dao.bookInsert(vo);
+		vo = dao.select(vo);
+		request.setAttribute("vo", vo);
+		
+		int n = dao.bookReturn(vo);
 		String viewPage = null;
 		if(n != 0) {
-			viewPage = "book/bookRentalUpdate";
+			viewPage = "book/bookReturnUpdate";
 		}
-		request.setAttribute("vo", vo);
 		
 		return viewPage;
 	}

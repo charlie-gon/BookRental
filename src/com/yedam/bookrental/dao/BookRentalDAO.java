@@ -60,6 +60,29 @@ public class BookRentalDAO extends DAO {
 		return n;
 	}
 	
+	// 도서 대여
+		public int bookReturn(BookRentalVO vo) {
+			int n = 0;
+			String sql = "INSERT INTO RENTAL(BOOKCODE, MEMBERID) VALUES(?,?)";
+			
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, vo.getbCode());
+				psmt.setString(2, vo.getmId());
+				n = psmt.executeUpdate();
+				if(n != 0) {
+					countPlus(Integer.parseInt(vo.getbCode()));
+				}
+				System.out.println("입력 완료");
+			}catch(SQLException e) {
+				e.printStackTrace();
+				System.out.println("입력 실패");
+			}finally {
+				close();
+			}
+			
+			return n;
+		}
 	
 	
 	// 현재수량 더하기

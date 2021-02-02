@@ -16,16 +16,16 @@
 		<div>
 			<table border="1">
 				<tr>
+					<th width="100">대여일자</th>
 					<th width="100">도서코드</th>
-					<th width="100">도서명</th>
-					<th width="100">기본수량</th>
-					<th width="100">현재수량</th>
+					<th width="100">회원아이디</th>
+					<th width="100">반납일자</th>
 				</tr>
 						<tr align="center">
+							<td width="100">${vo.rentalDate }</td>
 							<td width="100">${vo.bCode }</td>
-							<td width="100">${vo.bName }</td>
-							<td width="100">${vo.bQty }</td>
-							<td width="100">${vo.bCount }</td>
+							<td width="100">${vo.mId }</td>
+							<td width="100">${vo.returnDate }</td>
 						</tr>
 			</table>
 			<p />
