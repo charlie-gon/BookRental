@@ -27,6 +27,7 @@ public class Login implements Command {
 		   HttpSession session = request.getSession();
 		   session.setAttribute("mname", vo.getmName());
 		   session.setAttribute("mauth", vo.getmAuth());
+		   session.setAttribute("mId", vo.getmId());
 		   
 			if (vo.getmAuth() != null) {
 				viewPage = "book/loginSuccess";

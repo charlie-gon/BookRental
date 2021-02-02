@@ -16,11 +16,17 @@ public class BookReturnUpdate implements Command {
 		BookRentalDAO dao = new BookRentalDAO();
 		BookRentalVO vo = new BookRentalVO();
 		
+		vo = dao.select(vo);
 		vo.setbCode(request.getParameter("bCode"));
-		vo = dao.bookReturn(vo);
+		
+		int n = dao.bookInsert(vo);
+		String viewPage = null;
+		if(n != 0) {
+			viewPage = "book/bookRentalUpdate";
+		}
 		request.setAttribute("vo", vo);
 		
-		return "book/bookReturnUpdate";
+		return viewPage;
 	}
 
 }

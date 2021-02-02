@@ -12,23 +12,47 @@ public class BookRentalDAO extends DAO {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	
+	
+	// 도서 반납 멤버 선택
+	public BookRentalVO select(BookRentalVO vo) {
+
+		String sql = "SELECT * FROM RENTAL WHERE MEMBERID = ?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getmId());
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				vo.setRentalDate(rs.getDate("rentalDate"));
+				vo.setbCode(rs.getString("bCode"));
+				vo.setmId(rs.getString("mId"));
+				vo.setReturnDate(rs.getString("returnDate"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return vo;
+	}
+
 	// 도서 대여
 	public int bookInsert(BookRentalVO vo) {
 		int n = 0;
-		String sql = "INSERT INTO RENTAL(BOOKCODE, MEMBERID, RETURNDATE) VALUES(?,?,SYSDATE+14)";
+		String sql = "INSERT INTO RENTAL(BOOKCODE, MEMBERID) VALUES(?,?)";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getbCode());
 			psmt.setString(2, vo.getmId());
-			psmt.setString(3, vo.getReturnDate());
 			n = psmt.executeUpdate();
 			if(n != 0) {
 				countMinus(Integer.parseInt(vo.getbCode()));
 			}
-			
+			System.out.println("입력 완료");
 		}catch(SQLException e) {
 			e.printStackTrace();
+			System.out.println("입력 실패");
 		}finally {
 			close();
 		}
@@ -36,33 +60,7 @@ public class BookRentalDAO extends DAO {
 		return n;
 	}
 	
-	// 도서 반납
-		public BookRentalVO bookReturn(BookRentalVO vo) {
-			
-			String sql = "UPDATE RENTAL SET(BOOKCODE, MEMBERID, RETURNDATE) VALUES(?,?,SYSDATE)";
-			
-			try {
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, vo.getbCode());
-				psmt.setString(2, vo.getmId());
-				psmt.setString(3, vo.getReturnDate());
-				rs = psmt.executeQuery();
-				if(rs.next()) {
-					vo.setRentalDate(rs.getDate("rentaldate"));
-					vo.setbCode(rs.getString("bookcode"));
-					vo.setmId(rs.getString("memberid"));
-					vo.setReturnDate(rs.getString("returndate"));
-					countPlus(Integer.parseInt(vo.getbCode()));
-				}
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				close();
-			}
-			
-			return vo;
-		}
+	
 	
 	// 현재수량 더하기
 	public void countPlus(int count) {

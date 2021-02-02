@@ -15,9 +15,11 @@
 <script>
 	function bookRentalSubmit(str){
 		var msg = confirm("해당 도서를 대출하시겠습니까?");
+		if(msg){
 		frm.bCode.value = str;
 		frm.action = "bookRentalUpdate.do";
 		frm.submit();
+		}
 	}
 </script>
 
