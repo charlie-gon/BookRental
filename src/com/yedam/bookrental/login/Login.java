@@ -1,4 +1,4 @@
-package com.yedam.bookrental.web;
+package com.yedam.bookrental.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

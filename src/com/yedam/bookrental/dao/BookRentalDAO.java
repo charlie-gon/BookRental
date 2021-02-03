@@ -3,6 +3,7 @@ package com.yedam.bookrental.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.yedam.bookrental.common.DAO;
 import com.yedam.bookrental.vo.BookRentalVO;
@@ -11,6 +12,34 @@ public class BookRentalDAO extends DAO {
 
 	private PreparedStatement psmt;
 	private ResultSet rs;
+	
+	// 전체조회
+	public ArrayList<BookRentalVO> selectList(){
+		
+		ArrayList<BookRentalVO> list = new ArrayList<BookRentalVO>();
+		
+		String sql = "SELECT * FROM RENTAL";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				BookRentalVO vo = new BookRentalVO();
+				vo.setRentalDate(rs.getDate("rentaldate"));
+				vo.setbCode(rs.getString("bookcode"));
+				vo.setmId(rs.getString("memberid"));
+				vo.setReturnDate(rs.getString("returndate"));
+				list.add(vo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return list;
+	}
+	
 	
 	
 	// 도서 반납 멤버 선택
@@ -112,8 +141,9 @@ public class BookRentalDAO extends DAO {
 				e.printStackTrace();
 			}
 		}
-	
-	
+		
+
+		
 	
 	// close 메소드
 		private void close() {

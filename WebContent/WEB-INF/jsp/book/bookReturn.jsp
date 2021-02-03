@@ -26,7 +26,7 @@
 
 	<div align="center">
 		<div>
-			<h1>반납 예정 도서 목록</h1>
+			<h1>${mId }님의 반납 예정 도서 목록</h1>
 		</div>
 		<div>
 			<form id="frm" name="frm " method="post">
@@ -39,22 +39,16 @@
 						<th width="100">기본수량</th>
 						<th width="100">현재수량</th>
 					</tr>
-
-					<c:choose>
-						<c:when test="${vo.bCount < 5 }">
-							<c:forEach var="vo" items="${list }">
-								<tr align="center" onclick="bookReturnSubmit(${vo.bCode})">
-									<td width="100">${vo.bCode }</td>
-									<td width="100">${vo.bName }</td>
-									<td width="100">${vo.bQty }</td>
-									<td width="100">${vo.bCount }</td>
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<td width="100" colspan="4" align="center" style="color:red">- 반납 예정 도서가 없습니다 -</td>
-						</c:otherwise>
-					</c:choose>
+					<c:forEach var="vo" items="${list }">
+					<c:if test="${mId eq vo.mId}">
+					<tr align="center" onclick="bookReturnSubmit(${vo.bCode})">
+						<td width="100">${vo.rentalDate }</td>
+						<td width="100">${vo.bCode }</td>
+						<td width="100">${vo.mId }</td>
+						<td width="100">${vo.returnDate }</td>
+					</tr>
+					</c:if>
+					</c:forEach>
 				</table>
 				
 				<p/>
