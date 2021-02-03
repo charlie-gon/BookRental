@@ -41,7 +41,7 @@
 					</tr>
 
 					<c:choose>
-						<c:when test="${vo.bCount <= 5 }">
+						<c:when test="${vo.bCount < 5 }">
 							<c:forEach var="vo" items="${list }">
 								<tr align="center" onclick="bookReturnSubmit(${vo.bCode})">
 									<td width="100">${vo.bCode }</td>
@@ -52,7 +52,7 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<td width="100" colspan="4" align="center" style="color:red">대여 예정 도서가 없습니다.</td>
+							<td width="100" colspan="4" align="center" style="color:red">- 반납 예정 도서가 없습니다 -</td>
 						</c:otherwise>
 					</c:choose>
 				</table>
