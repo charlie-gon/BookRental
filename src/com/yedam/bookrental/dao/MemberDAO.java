@@ -163,8 +163,8 @@ public class MemberDAO extends DAO {
 			}
 			
 			// 아이디 체크
-			public boolean isIdCheck(String id) {
-				boolean bool = true;
+			public int isIdCheck(String id) {
+				int cnt = 0;
 				String sql = "SELECT MEMBERID FROM MEMBER WHERE MEMBERID = ?";
 				
 				try {
@@ -172,14 +172,17 @@ public class MemberDAO extends DAO {
 					psmt.setString(1, id);
 					rs = psmt.executeQuery();
 					if(rs.next()) {
-						bool = false;
+						cnt = 1; // 아이디 있으면 1
+					}else {
+						cnt = 0; // 아이디 없으면 0
 					}
 				}catch(SQLException e) {
 					e.printStackTrace();
+					System.out.println("아이디 중복확인 실패");
 				}finally {
 					close();
 				}
-				return bool;
+				return cnt;
 			}
 			
 			// 아이디별 대여 도서 확인

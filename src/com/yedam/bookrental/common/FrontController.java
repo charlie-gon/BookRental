@@ -56,18 +56,21 @@ public class FrontController extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		map.put("/main.do", new MainCommand()); // 메인 페이지
+		
+		map.put("/loginForm.do", new LoginForm());// 로그인
+		map.put("/login.do", new Login());// 로그인 정보 송출
+		map.put("/logOut.do", new LogOut()); // 로그아웃
+
+		map.put("/memberJoin.do", new MemberJoin()); // 회원가입
+		map.put("/idCheck.do", new idCheck()); // 아이디 중복체크
+		map.put("/memberJoinSuccess.do", new MemberJoinSuccess()); // 회원가입 확인
+		map.put("/joinSuccess.do", new joinSuccess()); // 회원가입 성공
+		
 		map.put("/bookList.do", new BookList()); // 도서 목록
 		map.put("/bookRental.do", new BookRental()); // 도서 대여
 		map.put("/bookRentalUpdate.do", new BookRentalUpdate()); // 도서 대여 확인
 		map.put("/bookReturn.do", new BookReturn()); // 도서 반납
 		map.put("/bookReturnUpdate.do", new BookReturnUpdate()); // 도서 반납 확인
-		map.put("/memberJoin.do", new MemberJoin()); // 회원가입
-		map.put("/loginForm.do", new LoginForm());// 로그인
-		map.put("/login.do", new Login());// Login정보 송출
-		map.put("/logOut.do", new LogOut()); // 로그아웃
-		map.put("/memberJoinSuccess.do", new MemberJoinSuccess()); // 회원가입 확인
-		map.put("/joinSuccess.do", new joinSuccess()); // 회원가입 성공
-		map.put("/idCheck.do", new idCheck());
 		
 		map.put("/adminList.do", new AdminList());// 관리자-전체리스트
 		map.put("/adminView.do", new AdminView());// 관리자-상세보기

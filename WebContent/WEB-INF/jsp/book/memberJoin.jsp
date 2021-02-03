@@ -40,13 +40,14 @@
 	function goMain() {
 		location.href = "main.do";
 	}
-	function idCheck(str) {
-		var url = "idCheck.do?id="+str;
-		if (!document.frm.id.value) {
+	function idCheck() {
+		var url = "idCheck.do?id="+frm.id.value;
+		if(!frm.id.value) {
 			alert("아이디를 입력하세요.");
 			frm.id.focus();
 		} else {
-			window.open(url, "아이디중복체크", "width=200, top=100, left=50, right=50");
+			window.open(url, "아이디중복체크", "width=400, height=350");
+			console.log(url);
 		}
 	}
 </script>
@@ -64,8 +65,8 @@
 				<tr>
 					<td id="title">아이디</td>
 					<td>
-						<input type="text" name="id" maxlength="20"> 
-						<input type="button" value="중복확인" onclick="idCheck(id.value)">
+						<input type="text" name="id" id="id" maxlength="20"> 
+						<input type="button" value="중복확인" onclick="return idCheck()">
 					</td>
 				</tr>
 
